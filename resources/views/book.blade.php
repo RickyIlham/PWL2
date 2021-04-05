@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
 
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#tambahBukuModal"><i class="fa fa-plus"></i>Tambah Data</i></button>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#tambahBukuModal"><i class="fa fa-plus"></i>Tambah Data</i></button><br><br>
 
                         <table class="table table-borderer" id="table-data">
                             <thead>
@@ -46,7 +46,12 @@
                                                 [Gambar Tidak Tersedia]
                                             @endif
                                         </td>
-                                        <td></td>
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="basic example">
+                                                <button type="button" id="btn-edit-buku" class="btn btn-success" data-toggle="modal" data-target="#editbukumodal" data-id="{{ $book->id }}">Edit</button>
+                                                <button type="button" id="btn-delete-buku" class="btn btn-danger">Hapus</button>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -60,6 +65,7 @@
 
 
 
+
     <div class="modal fade" id="tambahBukuModal" tabindex="-1" aria-labelledby="exampleModallabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -70,7 +76,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form method="post" action="" enctype="multipart/form-data">
+              <form method="post" action="{{ route('admin.books.submit')}}" enctype="multipart/form-data">
                 @csrf
                     <div class="form-group">
                         <label for="judul">Judul Buku</label>
@@ -90,14 +96,13 @@
                     </div>
                     <div class="form-group">
                         <label for="cover">Cover</label>
-                        <input type="file" class="form-control" name="cover" Covercover"rCover
+                        <input type="file" class="form-control" name="cover" id="cover">
                     </div>
-
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-              <button type="submit" class="btn btn-primary">Kirim</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary" name="submit">Kirim</button>
+                      </div>
+                  </form>
             </div>
           </div>
         </div>

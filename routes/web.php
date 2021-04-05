@@ -30,3 +30,6 @@ Route::get('admin/home', [App\Http\Controllers\AdminController::class, 'index'])
     Route::get('admin/books', [App\Http\Controllers\AdminController::class, 'books'])
     ->name('admin.books')
     ->middleware('isadmin');
+    Route::post('admin/books1', [App\Http\Controllers\AdminController::class, 'submit_books'])
+    ->name('admin.books.submit')
+    ->middleware('isadmin');
