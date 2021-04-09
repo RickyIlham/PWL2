@@ -33,3 +33,7 @@ Route::get('admin/home', [App\Http\Controllers\AdminController::class, 'index'])
     Route::post('admin/books1', [App\Http\Controllers\AdminController::class, 'submit_books'])
     ->name('admin.books.submit')
     ->middleware('isadmin');
+    Route::post('admin/books/update', [App\Http\Controllers\AdminController::class, 'update_books'])
+    ->name('admin.books.update')
+    ->middleware('isadmin');
+    Route::get('admin/ajaxadmin/dataBuku/{id}', [App\Http\Controllers\AdminController::class, 'getDataBuku']);

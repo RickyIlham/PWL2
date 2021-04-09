@@ -47,4 +47,38 @@ class AdminController extends Controller
         );
         return redirect()->route('admin.books')->with($notification);
     }
+
+    public function getDataBuku($id){
+        $buku = books::find($id);
+        return response()->json($books);
+    }
+
+    public function update_books(Request $request){
+       
+        $buku = books::find($request->get($id))->update("
+            
+            'judul'=>$request->judul;
+            'penulis'=>$request->penulis;
+            'tahun'=>$request->tahun;
+            'penerbit'=>$request->penerbit;
+
+            if($req->hasFile('cover')){
+                $extension =$req->file('cover')->extension();
+                $filename = 'cover_buku_'.time().'.'.$extension;
+                $req->file('cover')->storeAs(
+                    'public/cover_buku', $filename
+                );
+    
+                Storage::delete('public/cover_buku/'.$req->get('old_cover'));
+                $books->cover = $filename;
+    
+                $books->save();
+                $notification = array(
+                'message' => 'Data Buku Berhasil Diubah',
+                'alert-type' => 'Success'
+            );
+        ");
+        return redirect()->route('admin.books')->with($notification);
+        
+    }
 }
