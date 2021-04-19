@@ -16,8 +16,11 @@
                        <button class="btn btn-primary float-left" data-toggle="modal" data-target="#tambahBukuModal"><i class="fa fa-plus"></i> Tambah Data</button>
 
                         <a href="{{ route('admin.print.books') }}" target="_blank" class="btn btn-success float-left"><i class="fa fa-print"></i> Cetak PDF</a>
-                        <hr/>
 
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="{{route('admin.book.export')}}" class="btn btn-info" target="_blank">Export</a>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#importBuku">Import</button>
+                        </div>
                     </div>
                    <div class="card-body">
                        <table id="table-data" class="table table-borderer" >
@@ -183,6 +186,36 @@
       </div>
     </div>
   </div>
+
+
+    {{-- Modal Import Book --}}
+    <div class="modal fade" id="importBuku" tabindex="-1" aria-labelledby="importBukuLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ route('admin.book.import') }}" method="post" enctype="multipart/form-data">
+                    @method('POST')
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="importBukuLabel">Import Data</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="importData">Upload Data</label>
+                            <input type="file" class="form-control-file" id="importData" name="file">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- end Modal Import Book --}}
 
 @stop
 @section('js')
